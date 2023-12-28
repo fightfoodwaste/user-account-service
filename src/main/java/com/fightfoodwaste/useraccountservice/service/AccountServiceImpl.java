@@ -3,6 +3,7 @@ package com.fightfoodwaste.useraccountservice.service;
 import com.fightfoodwaste.useraccountservice.dto.GetAccountResponse;
 import com.fightfoodwaste.useraccountservice.entity.Account;
 import com.fightfoodwaste.useraccountservice.exceptions.AccountNotFoundException;
+import com.fightfoodwaste.useraccountservice.message.UserRegisteredPayload;
 import com.fightfoodwaste.useraccountservice.repository.AccountRepository;
 import com.fightfoodwaste.useraccountservice.utility.ObjConverter;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +27,11 @@ public class AccountServiceImpl implements AccountService{
         GetAccountResponse response = objConverter.accountEntityToDTO(account);
         return response;
 
+    }
+
+    public void saveAccount(UserRegisteredPayload payload){
+        Account account = objConverter.userRegisteredPayloadToEntity(payload);
+        repository.save(account);
     }
 
 

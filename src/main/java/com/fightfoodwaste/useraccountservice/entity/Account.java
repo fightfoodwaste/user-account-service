@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Data
@@ -21,7 +22,7 @@ public class Account {
     @Column(name = "last_name")
     private String last_name;
     @Column(name = "date_of_birth")
-    private LocalDateTime date_of_birth;
+    private Date date_of_birth;
 
 
 }

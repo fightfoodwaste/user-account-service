@@ -1,15 +1,17 @@
-package com.fightfoodwaste.useraccountservice.dto;
+package com.fightfoodwaste.useraccountservice.message;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 
 @Data
 @AllArgsConstructor
-public class GetAccountResponse {
-    private int id;
+@NoArgsConstructor
+public class UserRegisteredPayload {
+
+    private int auth_id;
     private String first_name;
     private String last_name;
     private Date date_of_birth;
