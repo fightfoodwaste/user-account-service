@@ -9,7 +9,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 public class GetAccountResponse {
-    private int id;
+    private Long id;
     private String first_name;
     private String last_name;
     private Date date_of_birth;

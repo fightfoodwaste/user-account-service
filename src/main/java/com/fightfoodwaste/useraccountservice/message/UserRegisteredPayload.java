@@ -1,5 +1,6 @@
 package com.fightfoodwaste.useraccountservice.message;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,8 +12,9 @@ import java.util.Date;
 @NoArgsConstructor
 public class UserRegisteredPayload {
 
-    private int auth_id;
+    private Long auth_id;
     private String first_name;
     private String last_name;
-    private Date date_of_birth;
+    @JsonFormat(shape = JsonFormat.Shape.NUMBER)
+    private Long date_of_birth;
 }

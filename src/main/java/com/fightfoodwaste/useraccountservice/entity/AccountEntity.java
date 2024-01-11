@@ -5,24 +5,22 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Account {
+public class AccountEntity {
 
     @Id
     @Column(name = "id")
-    private int id;
+    private Long id;
     @Column(name = "first_name")
     private String first_name;
     @Column(name = "last_name")
     private String last_name;
     @Column(name = "date_of_birth")
-    private Date date_of_birth;
+    private Long date_of_birth;
 
 
 }
