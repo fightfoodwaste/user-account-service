@@ -4,5 +4,5 @@ import com.fightfoodwaste.useraccountservice.message.UserRegisteredPayload;
 
 public interface ConsumingService {
 
-    void onUserRegistrationListener();
+    void onUserRegistrationListener(UserRegisteredPayload payload);
 }

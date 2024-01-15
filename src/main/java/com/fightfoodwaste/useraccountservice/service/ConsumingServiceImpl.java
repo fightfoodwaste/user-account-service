@@ -1,5 +1,6 @@
 package com.fightfoodwaste.useraccountservice.service;
 
+import com.fightfoodwaste.useraccountservice.config.MessagingConfig;
 import com.fightfoodwaste.useraccountservice.entity.AccountEntity;
 import com.fightfoodwaste.useraccountservice.message.UserRegisteredPayload;
 import com.fightfoodwaste.useraccountservice.utility.JsonExtract;
@@ -26,18 +27,15 @@ public class ConsumingServiceImpl implements ConsumingService{
 
     private final AccountService accountService;
 
-    private final JsonExtract jsonExtract;
+    //private final JsonExtract jsonExtract;
 
-
-    private final Channel channel;
-
-    private final ExecutorService executorService = Executors.newSingleThreadExecutor();
-    @PostConstruct
-    public void init(){
-        executorService.submit(this::onUserRegistrationListener);
+    @RabbitListener(queues = MessagingConfig.QUEUE_NAME)
+    public void onUserRegistrationListener(UserRegisteredPayload payload){
+        System.out.println(payload);
+        accountService.saveAccount(payload);
     }
 
-    @Override
+    /*@Override
     public void onUserRegistrationListener() {
         String queue_name = "user-registration";
         try{
@@ -53,17 +51,6 @@ public class ConsumingServiceImpl implements ConsumingService{
             e.printStackTrace();
             System.out.println("Connection error");
         }
-    }
+    }*/
 
-    @PreDestroy
-    public void onDestroy() {
-        try {
-            if (channel != null && channel.isOpen()) {
-                channel.close();
-            }
-        } catch (IOException | TimeoutException e) {
-            e.printStackTrace();
-        }
-        executorService.shutdownNow();
-    }
 }
