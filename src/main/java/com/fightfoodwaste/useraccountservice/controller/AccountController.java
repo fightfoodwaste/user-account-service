@@ -33,7 +33,6 @@ public class AccountController {
             return ResponseEntity.badRequest().build();
         }
         catch(RuntimeException e){
-            e.printStackTrace();
             return ResponseEntity.internalServerError().build();
         }
     }
