@@ -6,7 +6,7 @@ import com.fightfoodwaste.useraccountservice.message.UserRegisteredPayload;
 
 public interface AccountService {
 
-    GetAccountResponse getAccount(int id) throws AccountNotFoundException;
+    GetAccountResponse getAccount(long id) throws AccountNotFoundException;
 
     void saveAccount(UserRegisteredPayload payload);
 }

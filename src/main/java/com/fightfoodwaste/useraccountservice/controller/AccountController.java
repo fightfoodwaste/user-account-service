@@ -23,7 +23,7 @@ public class AccountController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<GetAccountResponse> getAccountById(@PathVariable("id") int id){
+    public ResponseEntity<GetAccountResponse> getAccountById(@PathVariable("id") long id){
         try{
             GetAccountResponse response = accountService.getAccount(id);
             return ResponseEntity.ok().body(response);

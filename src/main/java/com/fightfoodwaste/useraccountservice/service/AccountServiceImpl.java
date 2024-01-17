@@ -16,7 +16,7 @@ public class AccountServiceImpl implements AccountService{
     private final AccountRepository repository;
     private final ObjConverter objConverter;
     @Override
-    public GetAccountResponse getAccount(int id) throws AccountNotFoundException {
+    public GetAccountResponse getAccount(long id) throws AccountNotFoundException {
 
         AccountEntity accountEntity = repository.findById(id).orElseThrow(AccountNotFoundException::new);
         GetAccountResponse response = objConverter.accountEntityToDTO(accountEntity);
