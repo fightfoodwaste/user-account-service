@@ -61,7 +61,7 @@ jobs:
           if [ -z "$MY_SECRET" ]; then
             echo "Secret is not available"
           else
-            echo "Secret is available"
+            echo "$MY_SECRET"
           fi
        
      - name: Run Snyk to check for vulnerabilities
