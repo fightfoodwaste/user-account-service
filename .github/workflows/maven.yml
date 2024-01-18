@@ -32,7 +32,15 @@ jobs:
 
     - name: Build with Maven and Run SonarCloud Analysis
       run: mvn clean verify sonar:sonar -Dsonar.projectKey=fightfoodwaste_user-account-service -Dsonar.organization=fightfoodwaste -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}
-      
- 
+
     - name: Update dependency graph
       uses: advanced-security/maven-dependency-submission-action@571e99aab1055c2e71a1e2309b9691de18d6b7d6
+
+  security:
+    permissions: write-all
+    runs-on: ubuntu-latest
+    steps:
+     - name: Run Snyk to check for vulnerabilities
+       uses: snyk/actions/maven@master
+       env:
+         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
