@@ -54,6 +54,15 @@ jobs:
      - name: Set JAVA_HOME
        run: echo "JAVA_HOME=${{ steps.setup-java.outputs.java-home }}" >> $GITHUB_ENV
 
+     - name: Check Secret Availability
+       env:
+         MY_SECRET: ${{ secrets.SNYK_TOKEN }}
+         run: |
+          if [ -z "$MY_SECRET" ]; then
+            echo "Secret is not available"
+          else
+            echo "Secret is available"
+          fi
        
      - name: Run Snyk to check for vulnerabilities
        uses: snyk/actions/maven@master
