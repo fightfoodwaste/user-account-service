@@ -49,6 +49,10 @@ jobs:
      - name: Make mvnw executable
        run: chmod +x ./mvnw
        
+     - name: Set JAVA_HOME
+       run: echo "JAVA_HOME=${{ steps.setup-java.outputs.java-home }}" >> $GITHUB_ENV
+
+       
      - name: Run Snyk to check for vulnerabilities
        uses: snyk/actions/maven@master
        env:
