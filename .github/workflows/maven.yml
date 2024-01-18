@@ -56,4 +56,4 @@ jobs:
      - name: Run Snyk to check for vulnerabilities
        uses: snyk/actions/maven@master
        env:
-         SNYK_TOKEN: "2bdbb1ee-239c-41aa-88f9-c48661482b06"
+         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
