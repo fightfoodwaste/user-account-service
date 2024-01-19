@@ -29,7 +29,7 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(auth -> auth.requestMatchers("/account/**")
+                .authorizeHttpRequests(auth -> auth.requestMatchers("/account/**", "/actuator/**", "/actuator/prometheus")
                         .permitAll()
                         .anyRequest()
                         .authenticated())

@@ -1,25 +1,10 @@
 package com.fightfoodwaste.useraccountservice.service;
 
 import com.fightfoodwaste.useraccountservice.config.MessagingConfig;
-import com.fightfoodwaste.useraccountservice.entity.AccountEntity;
 import com.fightfoodwaste.useraccountservice.message.UserRegisteredPayload;
-import com.fightfoodwaste.useraccountservice.utility.JsonExtract;
-import com.fightfoodwaste.useraccountservice.utility.ObjConverter;
-import com.rabbitmq.client.Channel;
-import com.rabbitmq.client.Connection;
-import com.rabbitmq.client.ConnectionFactory;
-import com.rabbitmq.client.DeliverCallback;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
-
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
-import javax.swing.text.html.parser.Entity;
-import java.io.IOException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeoutException;
 
 @Component
 @RequiredArgsConstructor
