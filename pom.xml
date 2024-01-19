@@ -114,14 +114,21 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version> <!-- Use this version or later -->
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
                 <configuration>
                     <mainClass>com.fightfoodwaste.useraccountservice.UserAccountServiceApplication</mainClass>
                     <layout>JAR</layout>
-                    <source>17</source>
-                    <target>17</target>
                 </configuration>
                 <executions>
                     <execution>
