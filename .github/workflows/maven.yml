@@ -35,39 +35,22 @@ jobs:
 
     - name: Update dependency graph
       uses: advanced-security/maven-dependency-submission-action@571e99aab1055c2e71a1e2309b9691de18d6b7d6
-
+      
   security:
-    permissions: write-all
     runs-on: ubuntu-latest
     steps:
-     - uses: actions/checkout@v3
-     - name: Set up JDK 17
-       uses: actions/setup-java@v3
-       with:
-         java-version: '17'
-         distribution: 'temurin'
-         cache: maven
-         
-     - name: Make mvnw executable
-       run: chmod +x ./mvnw
-       
-     - name: Set JAVA_HOME
-       run: echo "JAVA_HOME=${{ steps.setup-java.outputs.java-home }}" >> $GITHUB_ENV
-
-     - name: Check Secret Availability
-       env:
-         MY_SECRET: ${{ secrets.SNYK_TOKEN }}
-       run: |
-          if [ -z "$MY_SECRET" ]; then
-            echo "Secret is not available"
-          else
-            echo "Secret available"
-          fi
-       
-     - name: Run Snyk to check for vulnerabilities
-       uses: snyk/actions/maven@master
-       env:
-         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-       with:
-         args: --sarif-file-output=snyk.sarif
+      - uses: actions/checkout@master
+      - name: Make mvnw executable
+        run: chmod +x ./mvnw
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/maven@master
+        continue-on-error: true # To make sure that SARIF upload gets called
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --sarif-file-output=snyk.sarif
+      - name: Upload result to GitHub Code Scanning
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: snyk.sarif
           
