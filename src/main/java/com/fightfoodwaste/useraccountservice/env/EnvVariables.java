@@ -10,4 +10,8 @@ import org.springframework.context.annotation.Configuration;
 public class EnvVariables {
 
     private String key;
+
+    private String encryptionKey;
+
+    private String encryptionAlgorithm;
 }

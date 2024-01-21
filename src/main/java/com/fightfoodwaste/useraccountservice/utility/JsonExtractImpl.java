@@ -2,6 +2,7 @@ package com.fightfoodwaste.useraccountservice.utility;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fightfoodwaste.useraccountservice.env.EnvVariables;
+import com.fightfoodwaste.useraccountservice.message.SafeDeletionPayload;
 import com.fightfoodwaste.useraccountservice.message.UserRegisteredPayload;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -26,7 +27,17 @@ public class JsonExtractImpl implements JsonExtract{
             return payload;
         }
         catch(Exception e) {
-            e.printStackTrace();
+            System.out.println("Error converting from json to object");
+            return null;
+        }
+    }
+
+    public SafeDeletionPayload convertSafeDeletionJsonToPayload(String json){
+        try{
+            SafeDeletionPayload payload = mapper.readValue(json, SafeDeletionPayload.class);
+            return payload;
+        }catch (Exception e){
+            System.out.println("Error converting from json to object");
             return null;
         }
     }
